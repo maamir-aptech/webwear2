@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Online Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+  <style>
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+    #nav {
+      background-color: #ffffff;
+    }
+    #logo {
+      height: 40px;           
+      display: flex;
+      align-items: center;   
+    }
+    #logo h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #000000;
+      margin: 0;
+      margin-left: 50px;
+    }
+    .navbar-nav .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #555555;
+      transition: color 0.5s;
+      margin-left: 30px;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #000000;
+      border-bottom: 1px solid #000000;
+    }
+    .navbar-nav .nav-link.active {
+      color: #000000;
+      font-weight: 600;
+    }
+    #log {
+      background-color: black;
+      fill: white;   
+      width: 22px;
+      padding: 5px;
+      border-radius: 50%;  
+      cursor: pointer;
+    }
+    .login {
+      margin-right: 20px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    @media (max-width: 991px) {
+      #offcanvasExample {
+        display: block !important;
+      }
+    }
+
+    /* Contact Header */
+    .contact-header {
+      background: linear-gradient(135deg, #1d4ed8, #0d6efd);
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .contact-header h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .contact-header p {
+      font-size: 20px;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-section {
+      background: #f8f9fa;
+      padding: 20px 0;
+      margin-bottom: 30px;
+    }
+    .breadcrumb-section nav {
+      margin-left: 50px;
+    }
+    .breadcrumb-section a {
+      color: #0d6efd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .breadcrumb-section a:hover {
+      color: #033176;
+      text-decoration: underline;
+    }
+
+    /* Contact Info Cards */
+    .contact-info-cards {
+      margin-bottom: 60px;
+    }
+    .info-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      margin-bottom: 30px;
+    }
+    .info-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    .info-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1d4ed8, #0d6efd);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 36px;
+      margin: 0 auto 20px;
+      box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3);
+    }
+    .info-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+    }
+    .info-card p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 0;
+    }
+    .info-card a {
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .info-card a:hover {
+      color: #033176;
+    }
+
+    /* Contact Form Section */
+    .contact-form-section {
+      background: #f8f9fa;
+      padding: 60px 0;
+      margin-bottom: 60px;
+    }
+    .contact-form-section h2 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .contact-form {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 25px;
+    }
+    .form-group label {
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 10px;
+      display: block;
+      font-size: 16px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #0d6efd;
+      box-shadow: 0 0 10px rgba(13, 110, 253, 0.2);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #1d4ed8, #0d6efd);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Social Media Section */
+    .social-section {
+      background: linear-gradient(135deg, #f8f9fa, #fff);
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .social-section h2 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 50px;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #0d6efd;
+      color: white;
+      font-size: 36px;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(13, 110, 253, 0.2);
+    }
+    .social-link:hover {
+      background: #033176;
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(13, 110, 253, 0.3);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      padding: 60px 0;
+      margin-bottom: 60px;
+    }
+    .faq-section h2 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+    .faq-item {
+      background: white;
+      border: 2px solid #ddd;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+      border-color: #0d6efd;
+      box-shadow: 0 10px 30px rgba(13, 110, 253, 0.15);
+    }
+    .faq-header {
+      padding: 25px;
+      background: #f8f9fa;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .faq-header:hover {
+      background: #f0f2f5;
+    }
+    .faq-header h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+    }
+    .faq-icon {
+      font-size: 20px;
+      color: #0d6efd;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-body {
+      padding: 25px;
+      display: none;
+      background: white;
+      color: #666;
+      line-height: 1.8;
+    }
+    .faq-item.active .faq-body {
+      display: block;
+    }
+
+    /* Map Section */
+    .map-section {
+      margin-bottom: 60px;
+    }
+    .map-container {
+      width: 100%;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: #fff;
+      padding: 60px 0 20px;
+      margin-top: 80px;
+    }
+    footer h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    footer p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #bbb;
+    }
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 14px;
+    }
+    footer a:hover {
+      color: #0d6efd;
+    }
+    .footer-section {
+      margin-bottom: 30px;
+    }
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+    .footer-logo img {
+      height: 80px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #0d6efd;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .footer-social a:hover {
+      background: #fff;
+      color: #0d6efd;
+      transform: translateY(-3px);
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-divider {
+      border-top: 1px solid #444;
+      margin: 40px 0 30px;
+      padding-top: 30px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-bottom p {
+      margin: 0;
+      color: #888;
+      font-size: 13px;
+    }
+    .footer-payments {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-payments img {
+      height: 30px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .footer-payments img:hover {
+      opacity: 1;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .newsletter-form button {
+      padding: 12px 25px;
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .newsletter-form button:hover {
+      background: #033176;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .contact-header h1 {
+        font-size: 36px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .map-container {
+        height: 300px;
+      }
+      .social-links {
+        gap: 15px;
+      }
+      .social-link {
+        width: 80px;
+        height: 80px;
+        font-size: 28px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      .newsletter-form input,
+      .newsletter-form button {
+        width: 100%;
+      }
+    }
+
+    /* Auth Buttons Styling */
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-right: 20px;
+    }
+    .auth-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .login-btn {
+      background: white;
+      color: #0d6efd;
+      border: 2px solid #0d6efd;
+    }
+    .login-btn:hover {
+      background: #0d6efd;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+    .register-btn {
+      background: #0d6efd;
+      color: white;
+      border: 2px solid #0d6efd;
+    }
+    .register-btn:hover {
+      background: #033176;
+      border-color: #033176;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+    }
+    @media (max-width: 991px) {
+      .auth-buttons {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 15px;
+      }
+      .auth-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg" id="nav">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5" id="logo" href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0" id="menu">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="shop.html">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <div class="auth-buttons">
+        <a href="login.html" class="auth-btn login-btn">
+          <i class="fas fa-sign-in-alt"></i> Log In
+        </a>
+        <a href="register.html" class="auth-btn register-btn">
+          <i class="fas fa-user-plus"></i> Register
+        </a>
+      </div>
+      <svg class="me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" style="width: 22px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+        <path d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/>
+      </svg>
+      <svg data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightw" style="width: 22px; cursor: pointer;" class="me-5 ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- Cart Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <a href="index.html"><img src="Images/logo.png" alt="logo" height="120px"></a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Your cart items will appear here</p>
+  </div>
+</div>
+
+<!-- Wishlist Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightw" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <a href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Your wishlist items will appear here</p>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><a class="navbar-brand" href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav ms-auto mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="shop.html">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="contact.html">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Contact Header -->
+<div class="contact-header">
+  <h1>Get In Touch</h1>
+  <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+</div>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-section">
+  <nav class="breadcrumb" style="margin-left: 50px;">
+    <a href="index.html">Home</a>
+    <span>&nbsp;/&nbsp;</span>
+    <span>Contact Us</span>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid ps-5 pe-5">
+  <!-- Contact Info Cards -->
+  <div class="contact-info-cards">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Visit Us</h3>
+          <p>123 Sneaker Street<br>Karachi City, SC 4/E<br>Pakistan</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Call Us</h3>
+          <p><a href="tel:+18001234567">+92 (319) 267-6166</a><br>Monday - Friday<br>9:00 AM - 6:00 PM EST</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email Us</h3>
+          <p><a href="umer2507F@aptechorangi.com">umer2507F@aptechorangi.com</a><br><a href="humer1216@gmail.com">humer1216@gmail.com</a><br>We reply within 24 hours</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form Section -->
+  <div class="contact-form-section">
+    <div class="container">
+      <h2>Send Us a Message</h2>
+      <div class="contact-form">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Muhammad Umer Riaz">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="umer2507F@aptechorangi.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+92 (300) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <input type="text" id="subject" name="subject" required placeholder="How can we help?">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Please provide details about your inquiry..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Inquiry Type</label>
+            <select id="category" name="category" style="width: 100%; padding: 14px 18px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; font-family: inherit;">
+              <option value="">Select a category</option>
+              <option value="general">General Inquiry</option>
+              <option value="sales">Sales & Orders</option>
+              <option value="support">Customer Support</option>
+              <option value="returns">Returns & Exchanges</option>
+              <option value="partnership">Partnership</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Media Section -->
+  <div class="social-section">
+    <div class="container">
+      <h2>Follow Us</h2>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Section -->
+  <div class="map-section">
+    <h2 style="text-align: center; margin-bottom: 40px; font-size: 36px; font-weight: 700; color: #000;">Find Our Location</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354502170137!2d144.95373631531655!3d-37.8162099971996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf00ef62049ee20a0!2s123%20Sneaker%20Street!5e0!3m2!1sen!2sus!4v1611234567890" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item active">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>How long does shipping take?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        Standard shipping typically takes 5-7 business days. Express shipping is available for 2-3 business days. International orders may take 10-15 business days depending on destination.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>What is your return policy?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        We offer a 30-day money-back guarantee on all purchases. If you're not satisfied with your sneakers, simply return them in original condition with the original packaging for a full refund.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>Are your products eco-friendly?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        Yes! All our sneakers are made from 100% sustainable and eco-friendly materials. We use organic cotton, recycled plastics, and natural rubber sourced responsibly from certified suppliers.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>How do I track my order?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        Once your order ships, you'll receive a tracking number via email. You can use this number to track your package in real-time on our website or the shipping carrier's website.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>Do you offer gift cards?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        Yes, we offer digital and physical gift cards in denominations from $25 to $500. They make perfect gifts for sneaker lovers and can be used for any product in our store.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-header" onclick="toggleFAQ(this)">
+        <h4>What payment methods do you accept?</h4>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-body">
+        We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, and Google Pay. All transactions are secure and encrypted for your protection.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <!-- Footer Column 1: About -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <div class="footer-logo">
+          <img src="Images/white logo.png" alt="Online Store Logo" height="80px">
+        </div>
+        <p>Your ultimate destination for premium, eco-friendly sneakers. Walk with purpose and style.</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Footer Column 2: Quick Links -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Column 3: Customer Service -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Customer Service</h5>
+        <ul class="footer-links">
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Return & Exchanges</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="login.html">My Account</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Column 4: Newsletter & Info -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get special offers and updates!</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+        <h5 style="margin-top: 25px;">Contact Info</h5>
+      <p>
+          📍 123 Sneaker Street, Karachi City<br>
+          📞 +92 (319) 267-6166<br>
+          📧 umer2507F@aptechorangi.com<br>
+          🕐 Mon - Fri: 9AM - 6PM
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div>
+        <p>&copy; 2026 Online Sneaker Store. All rights reserved. | 
+          <a href="#" style="color: #888;">Privacy Policy</a> | 
+          <a href="#" style="color: #888;">Terms of Service</a>
+        </p>
+      </div>
+      <!-- <div class="footer-payments">
+        <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" title="Visa">
+        <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard" title="Mastercard">
+        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal" title="PayPal">
+        <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" title="Apple Pay">
+      </div> -->
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+
+<script>
+  // Toggle FAQ Items
+  function toggleFAQ(header) {
+    const item = header.parentElement;
+    item.classList.toggle('active');
+  }
+
+  // Handle Form Submit
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    
+    alert(`Thank you, ${name}! Your message has been sent successfully.\n\nWe'll get back to you at ${email} soon.`);
+    
+    // Reset form
+    event.target.reset();
+  }
+
+  // Close FAQ on click outside
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.faq-item')) {
+      const active = document.querySelector('.faq-item.active');
+      if (active && !active.contains(event.target)) {
+        // Keep at least one open or handle as needed
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - Online Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+  <style>
+    *{
+      padding: 0px;
+      margin: 0px;
+    }
+    #nav {
+      background-color: #ffffff;
+    }
+    #logo {
+      height: 40px;           
+      display: flex;
+      align-items: center;   
+    }
+    #logo h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #000000;
+      margin: 0;
+      margin-left: 50px;
+    }
+    .navbar-nav .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #555555;
+      transition: color 0.5s;
+      margin-left: 30px;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #000000;
+      border-bottom: 1px solid #000000;
+    }
+    .navbar-nav .nav-link.active {
+      color: #000000;
+      font-weight: 600;
+    }
+    #log {
+      background-color: black;
+      fill: white;   
+      width: 22px;
+      padding: 5px;
+      border-radius: 50%;  
+      cursor: pointer;
+    }
+    .login {
+      margin-right: 20px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    @media (max-width: 991px) {
+      #offcanvasExample {
+        display: block !important;
+      }
+    }
+
+    /* Professional login modal styling */
+    .modal-content {
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .modal-content:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    }
+    .modal-header {
+      border-bottom: none;
+      justify-content: center;
+      padding-bottom: 0;
+    }
+    .modal-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #222;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+    .btn-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+    .btn-close:hover { opacity: 1; }
+    .modal-body {
+      position: relative;
+      z-index: 1;
+      padding-top: 20px;
+    }
+    .form-control {
+      border-radius: 12px;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #dc3545;
+      box-shadow: 0 0 10px rgba(220,53,69,0.2);
+    }
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(90deg, #dc3545, #e85c5c);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    .btn-login:hover {
+      background: linear-gradient(90deg, #c82333, #e04040);
+      transform: translateY(-2px);
+    }
+    .modal-footer {
+      border-top: none;
+      justify-content: center;
+      padding-top: 15px;
+    }
+    .login-link {
+      font-size: 14px;
+      color: #555;
+    }
+    .login-link a {
+      color: #dc3545;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .login-link a:hover {
+      color: #c82333;
+      text-decoration: underline;
+    }
+    .modal-content::before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle at top left, rgba(220,53,69,0.05), transparent 70%);
+      top: -30%;
+      left: -30%;
+      z-index: 0;
+      transform: rotate(25deg);
+    }
+
+    /* Shop Header Section */
+    .shop-header {
+      background: linear-gradient(135deg, #1d4ed8, #0d6efd);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .shop-header h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .shop-header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Filter Section */
+    .filter-section {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    .filter-section h5 {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #000;
+    }
+    .filter-section select, .filter-section input {
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 10px 15px;
+      width: 100%;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    .filter-section select:focus, .filter-section input:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 5px rgba(13, 110, 253, 0.2);
+    }
+
+    .price del{
+      color: #000;
+    }
+    .price strong{
+      color: #0d6efd;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 400px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+      position: relative;
+      margin: 0 auto;
+    }
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 35px 70px rgba(0,0,0,0.25);
+    }
+    .product-card img {
+      width: 95%;
+      height: 320px;
+      object-fit: cover;
+      margin: auto;
+      margin-left: 10px;
+      margin-top: 10px;
+      border-radius: 20px;
+    }
+    .card-content {
+      padding: 25px;
+    }
+    .card-content h4 {
+      font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #000;
+    }
+    .price {
+      margin-bottom: 20px;
+    }
+    .old-price {
+      text-decoration: line-through;
+      color: #000000;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .new-price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0d6efd;
+    }
+    .add-to-cart {
+      display: inline-block;
+      padding: 12px 30px;
+      background:#0d6efd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+    .add-to-cart:hover {
+      background: #033176;
+      color: #fff;
+      transform: scale(1.02);
+    }
+
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+    .vlp :hover{
+      transform: translateX(12px);
+    }
+
+    .card-body h4{
+      font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+      font-size: 18px;
+      color: #000;
+    }
+    .price-rate .old-price{
+      text-decoration: line-through;
+      color: #000000;
+      font-size: 12px;
+      margin-right: 10px;
+    }
+    .price-rate .new-price{
+      font-size: 17px;
+      font-weight: bold;
+      color: #0d6efd;
+    }
+    .img-box {
+      position: relative;
+    }
+    .sale-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ffffff;
+      color: #0d6efd;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 4px 8px;
+      border-radius: 15px;
+      z-index: 2;
+      letter-spacing: 1px;
+    }
+    .sale-badge2{
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ffffff;
+      color: #ff0000;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      padding: 4px 8px;
+      border-radius: 15px;
+      z-index: 2;
+      letter-spacing: 1px; 
+      padding-top: 10px;
+    }
+    .sale-badge-1{
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #0d6efd;
+      color: #fff;
+      padding: 8px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 15px;
+      letter-spacing: 1px;
+      z-index: 10;
+      margin-top: 15px;
+      margin-left: 10px;
+    }
+    .card:hover{
+      transform: translateY(-12px);
+    }
+    .card{
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+      border: none;
+      border-radius: 20px;
+    }
+    .btn{
+      background-color: #0d6efd;
+      color: #fff;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 550;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 23px;
+      padding-right: 23px;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn:hover{
+      background-color: #fff;
+      color: #0d6efd;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-weight: 550;
+      font-size: 16px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 23px;
+      padding-right: 23px;
+      border: #0d6efd 1px solid;
+    }
+
+    /* Pagination */
+    .pagination-section {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
+    }
+    .pagination-section nav {
+      display: flex;
+      gap: 10px;
+    }
+    .pagination-section a, .pagination-section span {
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #000;
+      transition: all 0.3s ease;
+    }
+    .pagination-section a:hover {
+      background: #0d6efd;
+      color: #fff;
+      border-color: #0d6efd;
+    }
+    .pagination-section .active {
+      background: #0d6efd;
+      color: #fff;
+      border-color: #0d6efd;
+    }
+
+    html body{
+      width: 100%;
+    }
+
+    /* Product Grid */
+    #productcard{
+      align-content: space-between;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .marquee-bar {
+      width: 100%;
+      background-color: #222;
+      overflow: hidden;
+      padding: 15px 0;
+      height: 100px;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .marquee-content {
+      display: flex;
+      width: max-content;
+      animation: scrollText 14s linear infinite;
+    }
+
+    .marquee-content span {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-right: 60px;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    @keyframes scrollText {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-section {
+      background: #f8f9fa;
+      padding: 20px 0;
+      margin-bottom: 30px;
+    }
+    .breadcrumb-section nav {
+      margin-left: 50px;
+    }
+    .breadcrumb-section a {
+      color: #0d6efd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .breadcrumb-section a:hover {
+      color: #033176;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .shop-header h1 {
+        font-size: 32px;
+      }
+      .filter-section {
+        flex-direction: column;
+      }
+      #productcard {
+        flex-direction: column;
+      }
+    }
+
+    /* Auth Buttons Styling */
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-right: 20px;
+    }
+    .auth-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .login-btn {
+      background: white;
+      color: #0d6efd;
+      border: 2px solid #0d6efd;
+    }
+    .login-btn:hover {
+      background: #0d6efd;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+    }
+    .register-btn {
+      background: #0d6efd;
+      color: white;
+      border: 2px solid #0d6efd;
+    }
+    .register-btn:hover {
+      background: #033176;
+      border-color: #033176;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+    }
+    @media (max-width: 991px) {
+      .auth-buttons {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        margin-right: 0;
+        margin-top: 15px;
+      }
+      .auth-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: #fff;
+      padding: 60px 0 20px;
+      margin-top: 80px;
+    }
+
+    footer h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    footer p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #bbb;
+    }
+
+    footer a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: #0d6efd;
+    }
+
+    .footer-section {
+      margin-bottom: 30px;
+    }
+
+    .footer-logo {
+      margin-bottom: 20px;
+    }
+
+    .footer-logo img {
+      height: 80px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #0d6efd;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: #fff;
+      color: #0d6efd;
+      transform: translateY(-3px);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-divider {
+      border-top: 1px solid #444;
+      margin: 40px 0 30px;
+      padding-top: 30px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      color: #888;
+      font-size: 13px;
+    }
+
+    .footer-payments {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-payments img {
+      height: 30px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .footer-payments img:hover {
+      opacity: 1;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .newsletter-form button {
+      padding: 12px 25px;
+      background: #0d6efd;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: #033176;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      footer {
+        padding: 40px 0 20px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      footer h5 {
+        font-size: 16px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-form input,
+      .newsletter-form button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg" id="nav">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-5" id="logo" href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0" id="menu">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="shop.html">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
+
+      <!-- Auth Buttons -->
+      <div class="auth-buttons">
+        <a href="login.html" class="auth-btn login-btn">
+          <i class="fas fa-sign-in-alt"></i> Log In
+        </a>
+        <a href="register.html" class="auth-btn register-btn">
+          <i class="fas fa-user-plus"></i> Register
+        </a>
+      </div>
+
+      <!-- Cart & Wishlist Icons -->
+        <path d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/>
+      </svg>
+      <svg data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightw" style="width: 22px; cursor: pointer;" class="me-5 ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>
+    </div>
+  </div>
+</nav>
+
+<!-- Cart Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <a href="index.html"><img src="Images/logo.png" alt="logo" height="120px"></a>
+    <a href="cart.html"><svg class="me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" style="width: 27px; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+        <path d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/>
+      </svg></a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card mt-3">
+      <img src="Images/bio.orignal.avif" class="card-img-top" alt="Bio Runner">
+      <div class="card-body">
+        <h5 class="card-title">Bio Runner</h5>
+        <div class="new-price">$99.00</div>
+        <a href="index.html" class="btn btn-primary mt-2">Remove From Cart</a>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <img src="Images/active.jr.avif" class="card-img-top" alt="Active JR">
+      <div class="card-body">
+        <h5 class="card-title">Active JR</h5>
+        <div class="new-price">$64.00</div>
+        <a href="index.html" class="btn btn-primary mt-2">Remove From Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Wishlist Offcanvas -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightw" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <a href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card1 wix-card mt-2" style="border-radius: 25px; border: none;">
+      <span class="sale-badge2"><i class="fa-solid fa-heart"></i>Favorite</span>
+      <img src="Images/active.jr.avif" class="card-img-top rounded-5" alt="Active JR">
+      <div class="card-body">
+        <h4>Active JR</h4>
+        <div class="price-rate">
+          <span class="old-price">$80.00</span>
+          <span class="new-price">$64.00</span>
+          <span><button type="button" class="btn btn-primary ms-5">Add To Cart</button></span>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel"><a class="navbar-brand" href="index.html"><img src="Images/logo.png" alt="logo" height="100px"></a></h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav ms-auto mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="shop.html">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Shop Header -->
+<div class="shop-header">
+  <h1>Our Premium Sneakers Collection</h1>
+  <p>Discover our latest collection of high-quality, eco-friendly sneakers</p>
+</div>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb-section">
+  <nav class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>&nbsp;/&nbsp;</span>
+    <span>Shop</span>
+  </nav>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid pe-5 ps-5">
+  <div class="row">
+    <!-- Sidebar Filters -->
+    <div class="col-md-3 mb-4">
+      <div class="filter-section">
+        <h5><i class="fas fa-filter"></i> Filters</h5>
+        
+        <div class="mb-3">
+          <label class="form-label">Price Range</label>
+          <input type="range" class="form-range" min="0" max="200" value="150">
+          <small>$0 - $200</small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select">
+            <option selected>All Categories</option>
+            <option value="1">Men</option>
+            <option value="2">Women</option>
+            <option value="3">Kids</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Size</label>
+          <select class="form-select">
+            <option selected>All Sizes</option>
+            <option value="1">6</option>
+            <option value="2">7</option>
+            <option value="3">8</option>
+            <option value="4">9</option>
+            <option value="5">10</option>
+            <option value="6">11</option>
+            <option value="7">12</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Color</label>
+          <select class="form-select">
+            <option selected>All Colors</option>
+            <option value="1">Black</option>
+            <option value="2">Blue</option>
+            <option value="3">Yellow</option>
+            <option value="4">White</option>
+          </select>
+        </div>
+
+        <button class="btn w-100 mt-3">Apply Filters</button>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="col-md-9">
+      <div id="productcard">
+        <h1 class="fp mt-0" style="font-family: 'Times New Roman', Times, serif;">All Products</h1>
+      </div>
+
+      <div class="row align-content-center justify-content-center">
+        <!-- Product 1 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/active.jr.avif" class="card-img-top rounded-5" alt="Active JR">
+            <div class="card-body">
+              <h4>Active JR</h4>
+              <div class="price-rate">
+                <span class="old-price">$80.00</span>
+                <span class="new-price">$64.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/bio.orignal.avif" class="card-img-top rounded-5" alt="Bio Original">
+            <div class="card-body">
+              <h4>Bio Original</h4>
+              <div class="price-rate">
+                <span class="old-price">$110.00</span>
+                <span class="new-price">$90.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/bio.perform.avif" class="card-img-top rounded-5" alt="Bio Perform">
+            <div class="card-body">
+              <h4>Bio Perform</h4>
+              <div class="price-rate">
+                <span class="old-price">$90.00</span>
+                <span class="new-price">$79.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/limited.dl.avif" class="card-img-top rounded-5" alt="Limited DL">
+            <div class="card-body">
+              <h4>Limited DL</h4>
+              <div class="price-rate">
+                <span class="old-price">$130.00</span>
+                <span class="new-price">$119.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge-1">ON SALE</span>
+            <img src="Images/black%20sneake.avif" class="card-img-top rounded-5" alt="Black Sneaker">
+            <div class="card-body">
+              <h4>Black Edition</h4>
+              <div class="price-rate">
+                <span class="old-price">$95.00</span>
+                <span class="new-price">$75.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/blue%20sneaer.avif" class="card-img-top rounded-5" alt="Blue Sneaker">
+            <div class="card-body">
+              <h4>Blue Runner</h4>
+              <div class="price-rate">
+                <span class="old-price">$100.00</span>
+                <span class="new-price">$85.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge">Best Seller</span>
+            <img src="Images/yelllow%20sneaker.avif" class="card-img-top rounded-5" alt="Yellow Sneaker">
+            <div class="card-body">
+              <h4>Yellow Pro</h4>
+              <div class="price-rate">
+                <span class="old-price">$105.00</span>
+                <span class="new-price">$88.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card wix-card" style="border-radius: 25px; border: none;">
+            <span class="sale-badge-1">SALE</span>
+            <img src="Images/bio.orignal.avif" class="card-img-top rounded-5" alt="Premium Sneaker">
+            <div class="card-body">
+              <h4>Premium Snealer</h4>
+              <div class="price-rate">
+                <span class="old-price">$140.00</span>
+                <span class="new-price">$120.00</span>
+              </div>
+              <button class="add-to-cart mt-3">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-section">
+        <nav>
+          <a href="#">« Previous</a>
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">Next »</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Featured Banner -->
+<div class="marquee-bar" style="margin-top: 50px;">
+  <div class="marquee-content">
+    <span>FREE SHIPPING ON ORDERS OVER $100</span>
+    <span>*</span>
+    <span>SECURE CHECKOUT</span>
+    <span>*</span>
+    <span>24/7 CUSTOMER SUPPORT</span>
+    <span>*</span>
+    <span>30-DAY MONEY BACK GUARANTEE</span>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <!-- Footer Column 1: About -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <div class="footer-logo">
+          <img src="Images/white logo.png" alt="Online Store Logo" height="80px">
+        </div>
+        <p>Your ultimate destination for premium, eco-friendly sneakers. Walk with purpose and style.</p>
+        <div class="footer-social">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Footer Column 2: Quick Links -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Quick Links</h5>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Column 3: Customer Service -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Customer Service</h5>
+        <ul class="footer-links">
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Return & Exchanges</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="login.html">My Account</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer Column 4: Newsletter & Info -->
+      <div class="col-md-3 col-sm-6 footer-section">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get special offers and updates!</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </div>
+        <h5 style="margin-top: 25px;">Contact Info</h5>
+        <p>
+          📍 123 Sneaker Street, Karachi City<br>
+          📞 +92 (319) 267-6166<br>
+          📧 umer2507F@aptechorangi.com<br>
+          🕐 Mon - Fri: 9AM - 6PM
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div>
+        <p>&copy; 2026 Online Sneaker Store. All rights reserved. | 
+          <a href="#" style="color: #888;">Privacy Policy</a> | 
+          <a href="#" style="color: #888;">Terms of Service</a>
+        </p>
+      <!-- </div>
+      <div class="footer-payments">
+        <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa" title="Visa">
+        <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard" title="Mastercard">
+        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal" title="PayPal">
+        <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" title="Apple Pay">
+      </div> -->
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+</body>
+</html>
